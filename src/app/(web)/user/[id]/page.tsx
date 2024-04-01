@@ -40,8 +40,8 @@ function UserPage(props: { params: { id: string } }) {
 				<div className="hidden md:block md:col-span-4 lg:col-span-3 shadow-lg h-fit sticky top-10 bg-[#eff0f2] text-black rounded-lg px-6 py-4">
 					<div className="md:w-[143px] w-28 h-28 md:h-[143px] mx-auto mb-5 rounded-full overflow-hidden">
 						<Image
-							src={userData.image}
-							alt={userData.name}
+							src={userData?.image || '/user.webp'}
+							alt={userData?.name}
 							width={143}
 							height={143}
 							className="img scale-animation rounded-full"
@@ -49,10 +49,10 @@ function UserPage(props: { params: { id: string } }) {
 					</div>
 					<div className="font-normal py-4 text-left">
 						<h6 className="text-xl font-bold pb-3">About</h6>
-						<p className="text-sm">{userData.about ?? ""}</p>
+						<p className="text-sm">{userData?.about ?? ""}</p>
 					</div>
 					<div className="font-normal text-left">
-						<h6 className="text-xl font-bold pb-3">{userData.name}</h6>
+						<h6 className="text-xl font-bold pb-3">{userData?.name}</h6>
 					</div>
 					<div className="flex items-center">
 						<p className="mr-2">Sign Out</p>
@@ -65,23 +65,23 @@ function UserPage(props: { params: { id: string } }) {
 
 				<div className="md:col-span-8 lg:col-span-9">
 					<div className="flex items-center">
-						<h5 className="text-2xl font-bold mr-3">Hello, {userData.name}</h5>
+						<h5 className="text-2xl font-bold mr-3">Hello, {userData?.name}</h5>
 					</div>
 					<div className="md:hidden w-14 h-14 rounded-l-full overflow-hidden">
 						<Image
 							className="img scale-animation rounded-full"
 							width={56}
 							height={56}
-							src={userData.image}
+							src={userData?.image || '/user.webp'}
 							alt="User  Name"
 						/>
 					</div>
 					<p className="block w-fit md:hidden text-sm py-2">
-						{userData.about ?? ""}
+						{userData?.about ?? ""}
 					</p>
 
 					<p className="text-xs py-2 font-medium">
-						Joined In {userData._createdAt.split("T")[0]}
+						Joined In {userData?._createdAt.split("T")[0]}
 					</p>
 					<div className="md:hidden flex items-center my-2">
 						<p className="mr-2">Sign out</p>

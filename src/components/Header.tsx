@@ -103,7 +103,7 @@ function Header() {
 									src={Session?.user?.image || "/user.webp"}
 									width={30}
 									height={30}
-									className="rounded-full"
+									className="rounded-full h-[35px] w-[35px]"
 								/>
 
 								<Button onClick={() => signOut()}>SignOut</Button>
