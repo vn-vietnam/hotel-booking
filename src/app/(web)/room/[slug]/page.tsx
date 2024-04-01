@@ -7,6 +7,8 @@ import Image from "next/image";
 import BookRoomCta from "@/components/BookRoomCta";
 import axios, { AxiosProgressEvent, AxiosRequestConfig } from "axios";
 import { useToast } from "@/components/ui/use-toast";
+import { useSession } from "next-auth/react";
+import { useRouter } from "next/navigation";
 
 function page(props: { params: { slug: string } }) {
 	const { toast } = useToast();
@@ -18,9 +20,11 @@ function page(props: { params: { slug: string } }) {
 		params: { slug },
 	} = props;
 	//
+	const router = useRouter();
 	const fetchRoom = async () => getRoom(slug);
 	const { data: room, error, isLoading } = useSWR("/api/room", fetchRoom);
-	// console.log(room)
+	const session = useSession();
+	// console.log(session);
 	if (error) throw new Error("Cannot fetch data");
 	if (typeof room === "undefined" && !isLoading)
 		throw new Error("Cannot fetch data");
@@ -43,6 +47,12 @@ function page(props: { params: { slug: string } }) {
 		return noOfDays;
 	};
 	const handleBookNowClick = async () => {
+		if (!session.data) {
+			return toast({
+				title: "Warning",
+				description: "Please login before booking",
+			});
+		}
 		if (!checkinDate || !checkoutDate) {
 			return toast({
 				title: "Warning",
@@ -58,17 +68,8 @@ function page(props: { params: { slug: string } }) {
 		}
 
 		const numberOfDays = calcNumDays();
-
+		// data.user.id
 		const hotelRoomSlug = room.slug.current;
-		// console.log(
-		// 	checkinDate,
-		// 	checkoutDate,
-		// 	adults,
-		// 	noOfChildren,
-		// 	numberOfDays,
-		// 	hotelRoomSlug
-		// );
-
 		try {
 			const config: AxiosRequestConfig = {
 				onUploadProgress: (progressEvent: AxiosProgressEvent) => {
@@ -80,7 +81,7 @@ function page(props: { params: { slug: string } }) {
 						if (percentCompleted == 100) {
 							return toast({
 								title: "Success",
-								description: "Booking Successfully",
+								description: "Booking Successfully. Please wait a second!",
 							});
 						}
 					}
@@ -98,12 +99,13 @@ function page(props: { params: { slug: string } }) {
 				},
 				config
 			);
+			router.push(`/user/${session?.data?.user?.id}`);
+
 		} catch (error) {
 			return toast({
 				title: "Something Wrong",
 				description: "Something wrong in here!",
 			});
-			// toast.error("An error occured");
 		}
 	};
 

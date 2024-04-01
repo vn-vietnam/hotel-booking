@@ -2,6 +2,8 @@ import { CreateBookingDto, Room } from "@/models/room";
 import sanityClient from "./sanity";
 import * as queries from "./sanityQueries";
 import axios from "axios";
+import { Booking } from "@/models/booking";
+// room
 export async function getFeaturedRoom() {
 	const result = await sanityClient.fetch<Room>(
 		queries.getFeaturedRoomQuery,
@@ -40,31 +42,52 @@ export const createBooking = async ({
 	numberOfDays,
 	totalPrice,
 	user,
-  }: CreateBookingDto) => {
+}: CreateBookingDto) => {
 	const mutation = {
-	  mutations: [
-		{
-		  create: {
-			_type: 'booking',
-			user: { _type: 'reference', _ref: user },
-			hotelRoom: { _type: 'reference', _ref: hotelRoom },
-			checkinDate,
-			checkoutDate,
-			numberOfDays,
-			adults,
-			children,
-			totalPrice,
-			discount,
-		  },
-		},
-	  ],
+		mutations: [
+			{
+				create: {
+					_type: "booking",
+					user: { _type: "reference", _ref: user },
+					hotelRoom: { _type: "reference", _ref: hotelRoom },
+					checkinDate,
+					checkoutDate,
+					numberOfDays,
+					adults,
+					children,
+					totalPrice,
+					discount,
+				},
+			},
+		],
 	};
-  
+
 	const { data } = await axios.post(
-	  `https://${process.env.NEXT_PUBLIC_SANITY_PROJECT_ID}.api.sanity.io/v2021-10-21/data/mutate/${process.env.NEXT_PUBLIC_SANITY_DATASET}`,
-	  mutation,
-	  { headers: { Authorization: `Bearer ${process.env.SANITY_STUDIO_TOKEN}` } }
+		`https://${process.env.NEXT_PUBLIC_SANITY_PROJECT_ID}.api.sanity.io/v2021-10-21/data/mutate/${process.env.NEXT_PUBLIC_SANITY_DATASET}`,
+		mutation,
+		{ headers: { Authorization: `Bearer ${process.env.SANITY_STUDIO_TOKEN}` } }
 	);
-  
+
 	return data;
-  };
+};
+// user
+export async function getUserData(userId: string) {
+	const result = await sanityClient.fetch(
+		queries.getUserDataQuery,
+		{ userId },
+		{ cache: "no-cache" }
+	);
+
+	return result;
+}
+export async function getUserBookings(userId: string) {
+	const result = await sanityClient.fetch<Booking[]>(
+		queries.getUserBookingsQuery,
+		{
+			userId,
+		},
+		{ cache: "no-cache" }
+	);
+
+	return result;
+}

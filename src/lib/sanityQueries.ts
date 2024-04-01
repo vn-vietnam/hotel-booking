@@ -1,5 +1,5 @@
-import { groq } from 'next-sanity';
-
+import { groq } from "next-sanity";
+// room
 export const getFeaturedRoomQuery = groq`*[_type == "hotelRoom" && isFeatured == true][0] {
     _id,
     description,
@@ -59,7 +59,7 @@ export const getUserBookingsQuery = groq`*[_type == 'booking' && user._ref == $u
     totalPrice,
     discount
 }`;
-
+// user
 export const getUserDataQuery = groq`*[_type == 'user' && _id == $userId][0] {
     _id,
     name,
@@ -69,7 +69,7 @@ export const getUserDataQuery = groq`*[_type == 'user' && _id == $userId][0] {
     _createdAt,
     image,
 }`;
-
+// review
 export const getRoomReviewsQuery = groq`*[_type == "review" && hotelRoom._ref == $roomId] {
     _createdAt,
     _id,

@@ -97,7 +97,7 @@ function Header() {
 							{/* <span className="sr-only">Toggle theme</span> */}
 						</Button>
 						{Session ? (
-							<>
+							<Link href={"/user/" + Session?.user?.id} className="flex gap-3">
 								<Image
 									alt="img-user"
 									src={Session?.user?.image || "/user.webp"}
@@ -107,7 +107,7 @@ function Header() {
 								/>
 
 								<Button onClick={() => signOut()}>SignOut</Button>
-							</>
+							</Link>
 						) : (
 							<>
 								<div className="sm:flex sm:gap-4">
