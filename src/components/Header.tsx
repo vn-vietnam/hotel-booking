@@ -23,63 +23,19 @@ function Header() {
 					<nav aria-label="Global" className="hidden md:block">
 						<ul className="flex items-center gap-6 text-sm">
 							<li>
-								<a
-									className="text-gray-500 transition hover:text-gray-500/75"
-									href="#"
-								>
-									{" "}
-									About{" "}
-								</a>
+								<Link className="" href="/room">
+									Hotel
+								</Link>
 							</li>
-
 							<li>
-								<a
-									className="text-gray-500 transition hover:text-gray-500/75"
-									href="#"
-								>
-									{" "}
-									Careers{" "}
-								</a>
+								<Link className="" href="/blog">
+									Blog
+								</Link>
 							</li>
-
 							<li>
-								<a
-									className="text-gray-500 transition hover:text-gray-500/75"
-									href="#"
-								>
-									{" "}
-									History{" "}
-								</a>
-							</li>
-
-							<li>
-								<a
-									className="text-gray-500 transition hover:text-gray-500/75"
-									href="#"
-								>
-									{" "}
-									Services{" "}
-								</a>
-							</li>
-
-							<li>
-								<a
-									className="text-gray-500 transition hover:text-gray-500/75"
-									href="#"
-								>
-									{" "}
-									Projects{" "}
-								</a>
-							</li>
-
-							<li>
-								<a
-									className="text-gray-500 transition hover:text-gray-500/75"
-									href="#"
-								>
-									{" "}
-									Blog{" "}
-								</a>
+								<Link className="" href="/about">
+									About me
+								</Link>
 							</li>
 						</ul>
 					</nav>
@@ -112,14 +68,14 @@ function Header() {
 							<>
 								<div className="sm:flex sm:gap-4">
 									<div
-										className="cursor-pointer block rounded-md bg-teal-600 px-5 py-2.5 text-sm font-medium text-white transition hover:bg-teal-700"
+										className="cursor-pointer block rounded-md bg-purple-700 px-5 py-2.5 text-sm font-medium text-white transition hover:bg-purple-800"
 										onClick={() => signIn()}
 									>
 										Login
 									</div>
 
 									<Link
-										className="hidden rounded-md bg-gray-100 px-5 py-2.5 text-sm font-medium text-teal-600 transition hover:text-teal-600/75 sm:block"
+										className="hidden rounded-md bg-purple-700 px-5 py-2.5 text-sm text-white font-medium  transition hover:bg-purple-800 sm:block"
 										href={"/auth/register"}
 									>
 										Register

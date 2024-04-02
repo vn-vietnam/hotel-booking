@@ -1,6 +1,6 @@
 import { groq } from "next-sanity";
 // room
-export const getFeaturedRoomQuery = groq`*[_type == "hotelRoom" && isFeatured == true][0] {
+export const getFeaturedRoomQuery = groq`*[_type == "hotelRoom" && isFeatured == true] {
     _id,
     description,
     discount,

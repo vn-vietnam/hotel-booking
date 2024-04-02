@@ -4,69 +4,49 @@ import Link from "next/link";
 import React, { FC } from "react";
 
 type Props = {
-	featuredRoom: Room;
+	featuredRoom: Room[];
 };
 
 const FeaturedRoom: FC<Props> = (props) => {
 	const { featuredRoom } = props;
 	// console.log(featuredRoom);
 	return (
-		<section className="flex md:flex-row flex-col px-4 py-10 items-center gap-12 container mx-auto">
-			<div className="md:grid gap-8 grid-cols-1">
-				<div className="rounded-2xl overflow-hidden h-48 mb-4 md:mb-0">
-					<Image
-						src={featuredRoom.coverImage.url}
-						alt={featuredRoom.name}
-						width={300}
-						height={300}
-						className=""
-					/>
-				</div>
-				<div className="grid grid-cols-2 gap-8 h-48">
-					{featuredRoom.images.map((image) => (
-						<div key={image._key} className="rounded-2xl overflow-hidden">
-							<Image
-								src={image.url}
-								alt={image._key}
-								width={100}
-								height={100}
-								className=""
-							/>
-						</div>
+		<>
+			<h2 className="text-3xl text-center tracking-tight font-bold sm:text-4xl text-purple-500">
+				Featured Hotels
+			</h2>
+			<section className="p-4 md:p-8 flex gap-5 flex-col md:flex-row lg:justify-center ">
+				{featuredRoom &&
+					featuredRoom?.map((hotel, index) => (
+						<article
+							key={index}
+							className="overflow-hidden rounded-lg  transition hover:shadow-lg cursor-pointer border border-purple-700 hover:shadow-purple-700"
+						>
+							<Link href={`/room/${hotel?.slug?.current}`}>
+								<Image
+									alt=""
+									src={hotel?.coverImage?.url}
+									className="h-56 w-full lg:w-[400px] object-cover"
+									width={100}
+									height={100}
+								/>
+
+								<div className=" p-4 sm:p-6">
+									<div className="block text-xs ">$ {hotel?.price}</div>
+
+									<div>
+										<h3 className="mt-2 text-md ">{hotel?.name}</h3>
+									</div>
+
+									<div className="mt-2 line-clamp-3 md:w-[350px] text-sm/relaxed opacity-75">
+										{hotel?.description}
+									</div>
+								</div>
+							</Link>
+						</article>
 					))}
-				</div>
-			</div>
-
-			<div className="md:py-10 md:w-1/2 text-left">
-				<h3 className="font-heading mb-12">Featured Room</h3>
-
-				<p className="font-normal max-w-md">{featuredRoom.description}</p>
-
-				<div className="flex flex-col md:flex-row md:items-end justify-between mt-5">
-					<div className="flex mb-3 md:mb-0">
-						<div className="flex gap-3 flex-col items-center justify-center mr-4">
-							<p className="text-xs lg:text-xl text-center">Start From</p>
-							<p className="md:font-bold flex font-medium text-lg xl:text-5xl">
-								$ {featuredRoom.price}
-							</p>
-						</div>
-						<div className="flex gap-3 flex-col items-center justify-center mr-4">
-							<p className="text-xs lg:text-xl text-center">Discount</p>
-							<p className="md:font-bold flex font-medium text-lg xl:text-5xl">
-								$ {featuredRoom.discount}
-							</p>
-						</div>
-					</div>
-
-					<Link
-						href={`/room/${featuredRoom.slug.current}`}
-						className="border h-fit text-center border-tertiary-dark text-tertiary-dark px-3 py-2 lg:py-5 lg:px-7 rounded-2xl font-bold lg:text-xl"
-					>
-						More Details
-					</Link>
-				</div>
-			</div>
-		</section>
+			</section>
+		</>
 	);
 };
 

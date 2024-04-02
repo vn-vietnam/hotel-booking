@@ -6,7 +6,7 @@ import { Booking } from "@/models/booking";
 import { CreateReviewDto, Review, UpdateReviewDto } from "@/models/review";
 // room
 export async function getFeaturedRoom() {
-	const result = await sanityClient.fetch<Room>(
+	const result = await sanityClient.fetch<Room[]>(
 		queries.getFeaturedRoomQuery,
 		{},
 		{ cache: "no-cache" }
