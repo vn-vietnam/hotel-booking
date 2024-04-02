@@ -14,30 +14,27 @@ const RoomCard: FC<Props> = (props) => {
 	} = props;
 
 	return (
-		<div className="rounded-xl w-72 mb-10 mx-auto md:mx-0 overflow-hidden text-black">
-			<div className="h-60 overflow-hidden">
+		<div className=" my-10 mx-4 md:mx-8 rounded-xl md:w-72 w-full  border border-purple-700">
+			<div className=" ">
 				<Image
 					src={coverImage.url}
 					alt={name}
 					width={250}
 					height={250}
-					className="img scale-animation"
+					className="w-full h-[250px] object-cover rounded-t-xl"
 				/>
 			</div>
 
-			<div className="p-4 bg-white">
-				<div className="flex justify-between text-xl font-semibold">
-					<p>{name}</p>
-					<p>$ {price}</p>
+			<div className="p-4 ">
+				<div className="flex justify-between flex-col text-md gap-3">
+					<div>$ {price}</div>
+					<div className="">{name}</div>
 				</div>
 
-				<p className="pt-2 text-xs">{type} Room</p>
-
-				<p className="pt-3 pb-6">{description.slice(1, 100)}...</p>
-
+				<p className="py-4 text-md font-mono">{type} Room</p>
 				<Link
 					href={`/room/${slug.current}`}
-					className="bg-primary inline-block text-center w-full py-4 rounded-xl text-white text-xl font-bold hover:-translate-y-2 hover:shadow-lg transition-all duration-500"
+					className="border border-2 inline-block text-center w-full py-4 rounded-xl  text-xl font-bold hover:-translate-y-2 hover:shadow-lg transition-all duration-500"
 				>
 					{isBooked ? "BOOKED" : "BOOK NOW"}
 				</Link>

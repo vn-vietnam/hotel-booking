@@ -108,22 +108,21 @@ function page(props: { params: { slug: string } }) {
 			});
 		}
 	};
-	// console.log(room._id)
 	return (
-		<div>
-			<div>{room.name}</div>
-			<Image alt="img" width={300} height={300} src={room.coverImage.url} />
-			<div>${room.price}</div>
-			<div>{room.description}</div>
-			{/* review */}
-			<div className="shadow dark:shadow-white rounded-lg p-6">
-				<div className="items-center mb-4">
-					<p className="md:text-lg font-semibold">Customer Reviews</p>
-				</div>
-				<div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-					<RoomReview roomId={room._id} />
-				</div>
+		<div className="p-4 md:p-8 flex flex-col gap-5">
+			<Image
+				alt="img"
+				width={300}
+				height={300}
+				src={room.coverImage.url}
+				className="w-full h-[300px] object-cover"
+			/>
+			<div className="flex flex-col gap-4">
+				<div className="text-xl font-semibold">{room.name}</div>
+				<div>${room.price}</div>
+				<div>{room.description}</div>
 			</div>
+
 			<BookRoomCta
 				discount={room.discount}
 				price={room.price}
@@ -140,6 +139,15 @@ function page(props: { params: { slug: string } }) {
 				isBooked={room.isBooked}
 				handleBookNowClick={handleBookNowClick}
 			/>
+			{/* review */}
+			<div className="shadow dark:shadow-white rounded-lg p-4">
+				<div className="items-center mb-4">
+					<p className="md:text-lg font-semibold">Customer Reviews</p>
+				</div>
+				<div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+					<RoomReview roomId={room._id} />
+				</div>
+			</div>
 		</div>
 	);
 }

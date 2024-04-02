@@ -6,7 +6,8 @@ import { Room } from "@/models/room";
 import { useSearchParams } from "next/navigation";
 import React, { useEffect, useState } from "react";
 import useSWR from "swr";
-
+import { Frown } from "lucide-react";
+import LoadingSpinner from "../loading";
 function page() {
 	const [roomTypeFilter, setRoomTypeFilter] = useState("");
 	const [searchQuery, setSearchQuery] = useState("");
@@ -54,8 +55,11 @@ function page() {
 	};
 
 	const filteredRooms = filterRooms(data || []);
+	if (isLoading) {
+		<LoadingSpinner />;
+	}
 	return (
-		<div className="container mx-auto pt-10">
+		<div className="min-h-screen">
 			<Search
 				roomTypeFilter={roomTypeFilter}
 				searchQuery={searchQuery}
@@ -63,10 +67,15 @@ function page() {
 				setSearchQuery={setSearchQuery}
 			/>
 
-			<div className="flex mt-20 justify-between flex-wrap">
-				{filteredRooms.map((room) => (
-					<RoomCard key={room._id} room={room} />
-				))}
+			<div className="flex justify-start gap-5 flex-wrap">
+				{filteredRooms.length !== 0 ? (
+					filteredRooms.map((room) => <RoomCard key={room._id} room={room} />)
+				) : (
+					<div className="flex justify-center items-center flex-col w-full h-full gap-5">
+						<div>Sorry I can't find the hotel</div>
+						<Frown />
+					</div>
+				)}
 			</div>
 		</div>
 	);

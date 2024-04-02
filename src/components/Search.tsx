@@ -15,8 +15,6 @@ const Search: FC<Props> = ({
 	setRoomTypeFilter,
 	setSearchQuery,
 }) => {
-	const router = useRouter();
-
 	const handleRoomTypeChange = (event: ChangeEvent<HTMLSelectElement>) => {
 		setRoomTypeFilter(event.target.value);
 	};
@@ -25,53 +23,28 @@ const Search: FC<Props> = ({
 		setSearchQuery(event.target.value);
 	};
 
-	// const handleFilterClick = () => {
-	// 	router.push(`/rooms?roomType=${roomTypeFilter}&searchQuery=${searchQuery}`);
-	// };
 	return (
-		<section className="bg-tertiary-light px-4 py-6 rounded-lg">
-			<div className="container mx-auto flex gap-4 flex-wrap justify-between items-center">
-				<div className="w-full md:1/3 lg:w-auto mb-4 md:mb-0">
-					<label className="block text-sm font-medium mb-2 text-black">
-						Room Type
-					</label>
-					<div className="relative">
-						<select
-							value={roomTypeFilter}
-							onChange={handleRoomTypeChange}
-							className="w-full px-4 py-2 capitalize rounded leading-tight dark:bg-black focus:outline-none"
-						>
-							<option value="All">All</option>
-							<option value="Basic">Basic</option>
-							<option value="Luxury">Luxury</option>
-							<option value="Suite">Suite</option>
-						</select>
-					</div>
-				</div>
+		<div className="my-10 mx-4 md:mx-8 flex gap-4 flex-wrap justify-between items-center">
+			<select
+				value={roomTypeFilter}
+				onChange={handleRoomTypeChange}
+				className=" px-4 py-2 capitalize rounded leading-tight dark:bg-black focus:outline-none border"
+			>
+				<option value="All">All</option>
+				<option value="Basic">Basic</option>
+				<option value="Luxury">Luxury</option>
+				<option value="Suite">Suite</option>
+			</select>
 
-				<div className="w-full md:1/3 lg:w-auto mb-4 md:mb-0">
-					{/* <label className="block text-sm font-medium mb-2 text-black">
-						Search
-					</label> */}
-					<input
-						type="search"
-						id="search"
-						placeholder="Search..."
-						className="w-full px-4 py-3 rounded leading-tight dark:bg-black focus:outline-none placeholder:text-black dark:placeholder:text-white"
-						value={searchQuery}
-						onChange={handleSearchQueryChange}
-					/>
-				</div>
-{/* 
-				<button
-					className="btn-primary"
-					type="button"
-					onClick={handleFilterClick}
-				>
-					Search
-				</button> */}
-			</div>
-		</section>
+			<input
+				type="search"
+				id="search"
+				placeholder="Search..."
+				className=" px-4 py-3 rounded border leading-tight dark:bg-black focus:outline-none placeholder:text-black dark:placeholder:text-white"
+				value={searchQuery}
+				onChange={handleSearchQueryChange}
+			/>
+		</div>
 	);
 };
 

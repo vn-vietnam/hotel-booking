@@ -15,45 +15,43 @@ import Chart from "@/components/Chart";
 import RatingModal from "@/components/RatingModal";
 import BackDrop from "@/components/BackDrop";
 function UserPage(props: { params: { id: string } }) {
-
 	const [roomId, setRoomId] = useState<string | null>(null);
 	const [isRatingVisible, setIsRatingVisible] = useState(false);
 	const [isSubmittingReview, setIsSubmittingReview] = useState(false);
 	const [ratingValue, setRatingValue] = useState<number | null>(0);
-	const [ratingText, setRatingText] = useState('');
-	const toggleRatingModal = () => setIsRatingVisible(prevState => !prevState);
+	const [ratingText, setRatingText] = useState("");
+	const toggleRatingModal = () => setIsRatingVisible((prevState) => !prevState);
 	const reviewSubmitHandler = async () => {
 		if (!ratingText.trim().length || !ratingValue) {
-		  return ('Please provide a rating text and a rating');
-		// console.log("error")
-		}
-	
-		if (!roomId) {
-			return ('error')
+			return "Please provide a rating text and a rating";
 			// console.log("error")
 		}
-		setIsSubmittingReview(true)
-	
-		try {
-		  const { data } = await axios.post('/api/user', {
-			reviewText: ratingText,
-			ratingValue,
-			roomId,
-		  });
-		  console.log(data);
-		//   toast.success('Review Submitted');
-		} catch (error) {
-		  console.log(error);
-		//   toast.error('Review Failed');
-		} finally {
-		  setRatingText('');
-		  setRatingValue(null);
-		  setRoomId(null);
-		  setIsSubmittingReview(false);
-		  setIsRatingVisible(false);
-		}
-	  };
 
+		if (!roomId) {
+			return "error";
+			// console.log("error")
+		}
+		setIsSubmittingReview(true);
+
+		try {
+			const { data } = await axios.post("/api/user", {
+				reviewText: ratingText,
+				ratingValue,
+				roomId,
+			});
+			console.log(data);
+			//   toast.success('Review Submitted');
+		} catch (error) {
+			console.log(error);
+			//   toast.error('Review Failed');
+		} finally {
+			setRatingText("");
+			setRatingValue(null);
+			setRoomId(null);
+			setIsSubmittingReview(false);
+			setIsRatingVisible(false);
+		}
+	};
 
 	const {
 		params: { id },
@@ -73,25 +71,13 @@ function UserPage(props: { params: { id: string } }) {
 		fetchUserBooking
 	);
 
-	// review
-
-
-
-
-
-
-	// console.log(ratingValue);
 	if (isLoading || isLoadingUserBooking) return <LoadingSpinner />;
 	if (!userData) throw new Error("Cannot fetch data");
 
-
-
-
-
 	return (
-		<div className="container mx-auto px-2 md:px-4 py10">
+		<div className="mx-auto px-4 md:px-8 py-10 h-screen">
 			<div className="grid md:grid-cols-12 gap-10">
-				<div className="hidden md:block md:col-span-4 lg:col-span-3 shadow-lg h-fit sticky top-10 bg-[#eff0f2] text-black rounded-lg px-6 py-4">
+				<div className="hidden md:block md:col-span-4 lg:col-span-3 shadow-lg h-fit sticky top-10 border rounded-lg px-6 py-4">
 					<div className="md:w-[143px] w-28 h-28 md:h-[143px] mx-auto mb-5 rounded-full overflow-hidden">
 						<Image
 							src={userData?.image || "/user.webp"}
@@ -117,7 +103,7 @@ function UserPage(props: { params: { id: string } }) {
 					</div>
 				</div>
 
-				<div className="md:col-span-8 lg:col-span-9">
+				<div className="md:col-span-8 lg:col-span-9 gap-4 flex flex-col">
 					<div className="flex items-center">
 						<h5 className="text-2xl font-bold mr-3">Hello, {userData?.name}</h5>
 					</div>
@@ -127,7 +113,7 @@ function UserPage(props: { params: { id: string } }) {
 							width={56}
 							height={56}
 							src={userData?.image || "/user.webp"}
-							alt="User  Name"
+							alt="User Name"
 						/>
 					</div>
 					<p className="block w-fit md:hidden text-sm py-2">
@@ -145,10 +131,10 @@ function UserPage(props: { params: { id: string } }) {
 						/>
 					</div>
 
-					<nav className="sticky top-0 px-2 w-fit mx-auto md:w-full md:px-5 py-3 mb-8 text-gray-700 border border-gray-200 rounded-lg bg-gray-50 mt-7">
+					<nav className="sticky top-0 px-2 w-fit mx-auto md:w-full md:px-5 py-3 mb-8 text-gray-700 border border-gray-200 rounded-lg  mt-7">
 						<ol
 							className={`${
-								currentNav === "bookings" ? "text-blue-600" : "text-gray-700"
+								currentNav === "bookings" ? "text-blue-600" : "text-gray-400"
 							} inline-flex mr-1 md:mr-5 items-center space-x-1 md:space-x-3`}
 						>
 							<li
@@ -163,7 +149,7 @@ function UserPage(props: { params: { id: string } }) {
 						</ol>
 						<ol
 							className={`${
-								currentNav === "amount" ? "text-blue-600" : "text-gray-700"
+								currentNav === "amount" ? "text-blue-600" : "text-gray-400"
 							} inline-flex mr-1 md:mr-5 items-center space-x-1 md:space-x-3`}
 						>
 							<li
@@ -207,7 +193,7 @@ function UserPage(props: { params: { id: string } }) {
 				reviewSubmitHandler={reviewSubmitHandler}
 				toggleRatingModal={toggleRatingModal}
 			/>
-			 <BackDrop isOpen={isRatingVisible} />
+			<BackDrop isOpen={isRatingVisible} />
 		</div>
 	);
 }
