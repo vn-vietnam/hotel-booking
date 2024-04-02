@@ -18,7 +18,17 @@ import {
 	BreadcrumbPage,
 	BreadcrumbSeparator,
 } from "@/components/ui/breadcrumb";
+
+import dynamic from "next/dynamic";
+
+// import Map from "@/components/Map";
 function page(props: { params: { slug: string } }) {
+	const MapWrapper = dynamic(
+		() => import("../../../../components/MapWrapper"),
+		{
+			ssr: false,
+		}
+	);
 	const { toast } = useToast();
 	const [checkinDate, setCheckinDate] = useState<Date | null>(null);
 	const [checkoutDate, setCheckoutDate] = useState<Date | null>(null);
@@ -144,7 +154,9 @@ function page(props: { params: { slug: string } }) {
 				<div>${room.price}</div>
 				<div>{room.description}</div>
 			</div>
-
+			<div className="w-full h-[200px] sm:h-[500px]">
+				<MapWrapper dimention={room.dimension}/>
+			</div>
 			<BookRoomCta
 				discount={room.discount}
 				price={room.price}

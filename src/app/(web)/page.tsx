@@ -1,11 +1,11 @@
 import Banner from "@/components/Banner";
 import FAQ from "@/components/FAQ";
 import FeaturedRoom from "@/components/FeaturedRoom";
-import Footer from "@/components/Footer";
 import SectionCallAction from "@/components/SectionCallAction";
 import Testimonial from "@/components/Testimonial";
 import { getFeaturedRoom } from "@/lib/apis";
 import React from "react";
+
 
 async function page() {
 	const featuredRoom = await getFeaturedRoom();
@@ -16,6 +16,7 @@ async function page() {
 			<Testimonial />
 			<FeaturedRoom featuredRoom={featuredRoom} />
 			<FAQ />
+			
 		</div>
 	);
 }
