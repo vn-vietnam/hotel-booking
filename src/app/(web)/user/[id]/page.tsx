@@ -12,7 +12,49 @@ import { BsJournalBookmarkFill } from "react-icons/bs";
 import { GiMoneyStack } from "react-icons/gi";
 import Table from "@/components/Table";
 import Chart from "@/components/Chart";
+import RatingModal from "@/components/RatingModal";
+import BackDrop from "@/components/BackDrop";
 function UserPage(props: { params: { id: string } }) {
+
+	const [roomId, setRoomId] = useState<string | null>(null);
+	const [isRatingVisible, setIsRatingVisible] = useState(false);
+	const [isSubmittingReview, setIsSubmittingReview] = useState(false);
+	const [ratingValue, setRatingValue] = useState<number | null>(0);
+	const [ratingText, setRatingText] = useState('');
+	const toggleRatingModal = () => setIsRatingVisible(prevState => !prevState);
+	const reviewSubmitHandler = async () => {
+		if (!ratingText.trim().length || !ratingValue) {
+		  return ('Please provide a rating text and a rating');
+		// console.log("error")
+		}
+	
+		if (!roomId) {
+			return ('error')
+			// console.log("error")
+		}
+		setIsSubmittingReview(true)
+	
+		try {
+		  const { data } = await axios.post('/api/user', {
+			reviewText: ratingText,
+			ratingValue,
+			roomId,
+		  });
+		  console.log(data);
+		//   toast.success('Review Submitted');
+		} catch (error) {
+		  console.log(error);
+		//   toast.error('Review Failed');
+		} finally {
+		  setRatingText('');
+		  setRatingValue(null);
+		  setRoomId(null);
+		  setIsSubmittingReview(false);
+		  setIsRatingVisible(false);
+		}
+	  };
+
+
 	const {
 		params: { id },
 	} = props;
@@ -30,9 +72,21 @@ function UserPage(props: { params: { id: string } }) {
 		"/api/userbooking",
 		fetchUserBooking
 	);
-	// console.log(userBookings, id);
+
+	// review
+
+
+
+
+
+
+	// console.log(ratingValue);
 	if (isLoading || isLoadingUserBooking) return <LoadingSpinner />;
 	if (!userData) throw new Error("Cannot fetch data");
+
+
+
+
 
 	return (
 		<div className="container mx-auto px-2 md:px-4 py10">
@@ -40,7 +94,7 @@ function UserPage(props: { params: { id: string } }) {
 				<div className="hidden md:block md:col-span-4 lg:col-span-3 shadow-lg h-fit sticky top-10 bg-[#eff0f2] text-black rounded-lg px-6 py-4">
 					<div className="md:w-[143px] w-28 h-28 md:h-[143px] mx-auto mb-5 rounded-full overflow-hidden">
 						<Image
-							src={userData?.image || '/user.webp'}
+							src={userData?.image || "/user.webp"}
 							alt={userData?.name}
 							width={143}
 							height={143}
@@ -72,7 +126,7 @@ function UserPage(props: { params: { id: string } }) {
 							className="img scale-animation rounded-full"
 							width={56}
 							height={56}
-							src={userData?.image || '/user.webp'}
+							src={userData?.image || "/user.webp"}
 							alt="User  Name"
 						/>
 					</div>
@@ -128,21 +182,32 @@ function UserPage(props: { params: { id: string } }) {
 						userBookings && (
 							<Table
 								bookingDetails={userBookings}
-								// setRoomId={setRoomId}
-								// toggleRatingModal={toggleRatingModal}
+								setRoomId={setRoomId}
+								toggleRatingModal={toggleRatingModal}
 							/>
 						)
 					) : (
 						<></>
 					)}
 
-					{currentNav === 'amount' ? (
-		  userBookings && <Chart userBookings={userBookings} />
-		) : (
-		  <></>
-		)}
+					{currentNav === "amount" ? (
+						userBookings && <Chart userBookings={userBookings} />
+					) : (
+						<></>
+					)}
 				</div>
 			</div>
+			<RatingModal
+				isOpen={isRatingVisible}
+				ratingValue={ratingValue}
+				setRatingValue={setRatingValue}
+				ratingText={ratingText}
+				setRatingText={setRatingText}
+				isSubmittingReview={isSubmittingReview}
+				reviewSubmitHandler={reviewSubmitHandler}
+				toggleRatingModal={toggleRatingModal}
+			/>
+			 <BackDrop isOpen={isRatingVisible} />
 		</div>
 	);
 }

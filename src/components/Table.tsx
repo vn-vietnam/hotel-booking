@@ -7,9 +7,11 @@ import { Booking } from "@/models/booking";
 
 type Props = {
 	bookingDetails: Booking[];
+	setRoomId: Dispatch<SetStateAction<string | null>>;
+	toggleRatingModal: () => void;
 };
 
-const Table: FC<Props> = ({ bookingDetails }) => {
+const Table: FC<Props> = ({ bookingDetails, setRoomId, toggleRatingModal }) => {
 	const router = useRouter();
 
 	return (
@@ -23,7 +25,7 @@ const Table: FC<Props> = ({ bookingDetails }) => {
 						<th className="px-6 py-3">Discount</th>
 						<th className="px-6 py-3">No. Days Booked</th>
 						<th className="px-6 py-3">Days Left</th>
-						{/* <th className="px-6 py-3"></th> */}
+						<th className="px-6 py-3">Rating</th>
 					</tr>
 				</thead>
 				<tbody>
@@ -45,14 +47,17 @@ const Table: FC<Props> = ({ bookingDetails }) => {
 							<td className="px-6 py-4">{booking.discount}</td>
 							<td className="px-6 py-4">{booking.numberOfDays}</td>
 							<td className="px-6 py-4">0</td>
-							{/* <td className="px-6 py-4">
+							<td className="px-6 py-4">
 								<button
-									onClick={() => {}}
+									onClick={() => {
+										setRoomId(booking.hotelRoom._id);
+										toggleRatingModal();
+									}}
 									className="font-medium text-blue-600 hover:underline"
 								>
 									Rate
 								</button>
-							</td> */}
+							</td>
 						</tr>
 					))}
 				</tbody>

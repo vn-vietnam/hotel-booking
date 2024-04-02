@@ -9,6 +9,7 @@ import axios, { AxiosProgressEvent, AxiosRequestConfig } from "axios";
 import { useToast } from "@/components/ui/use-toast";
 import { useSession } from "next-auth/react";
 import { useRouter } from "next/navigation";
+import RoomReview from "@/components/RoomReview";
 
 function page(props: { params: { slug: string } }) {
 	const { toast } = useToast();
@@ -100,7 +101,6 @@ function page(props: { params: { slug: string } }) {
 				config
 			);
 			router.push(`/user/${session?.data?.user?.id}`);
-
 		} catch (error) {
 			return toast({
 				title: "Something Wrong",
@@ -108,13 +108,22 @@ function page(props: { params: { slug: string } }) {
 			});
 		}
 	};
-
+	// console.log(room._id)
 	return (
 		<div>
 			<div>{room.name}</div>
 			<Image alt="img" width={300} height={300} src={room.coverImage.url} />
 			<div>${room.price}</div>
 			<div>{room.description}</div>
+			{/* review */}
+			<div className="shadow dark:shadow-white rounded-lg p-6">
+				<div className="items-center mb-4">
+					<p className="md:text-lg font-semibold">Customer Reviews</p>
+				</div>
+				<div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+					<RoomReview roomId={room._id} />
+				</div>
+			</div>
 			<BookRoomCta
 				discount={room.discount}
 				price={room.price}
