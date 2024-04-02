@@ -8,6 +8,15 @@ import React, { useEffect, useState } from "react";
 import useSWR from "swr";
 import { Frown } from "lucide-react";
 import LoadingSpinner from "../loading";
+import RoomReview from "@/components/RoomReview";
+import {
+	Breadcrumb,
+	BreadcrumbItem,
+	BreadcrumbLink,
+	BreadcrumbList,
+	BreadcrumbPage,
+	BreadcrumbSeparator,
+} from "@/components/ui/breadcrumb";
 function page() {
 	const [roomTypeFilter, setRoomTypeFilter] = useState("");
 	const [searchQuery, setSearchQuery] = useState("");
@@ -60,6 +69,17 @@ function page() {
 	}
 	return (
 		<div className="min-h-screen">
+			<Breadcrumb className="p-4 md:p-8">
+				<BreadcrumbList>
+					<BreadcrumbItem>
+						<BreadcrumbLink href="/">Home</BreadcrumbLink>
+					</BreadcrumbItem>
+					<BreadcrumbSeparator />
+					<BreadcrumbItem>
+						<BreadcrumbPage>Hotels</BreadcrumbPage>
+					</BreadcrumbItem>
+				</BreadcrumbList>
+			</Breadcrumb>
 			<Search
 				roomTypeFilter={roomTypeFilter}
 				searchQuery={searchQuery}

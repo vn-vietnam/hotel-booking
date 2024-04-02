@@ -6,7 +6,11 @@ import { Button } from "./ui/button";
 import { MoonIcon, SunIcon } from "@radix-ui/react-icons";
 import Link from "next/link";
 import { useSession, signOut, signIn } from "next-auth/react";
-
+import {
+	Popover,
+	PopoverContent,
+	PopoverTrigger,
+} from "@/components/ui/popover";
 function Header() {
 	const { data: Session } = useSession();
 	// console.log(Session);
@@ -41,16 +45,19 @@ function Header() {
 					</nav>
 
 					<div className="flex items-center gap-4">
-						<Button variant="outline" size="icon">
+						<Button
+							className="border border-purple-700"
+							variant="outline"
+							size="icon"
+						>
 							<SunIcon
-								className="h-[1.2rem] w-[1.2rem] rotate-0 scale-100 transition-all dark:-rotate-90 dark:scale-0"
+								className="h-[1.2rem] w-[1.2rem]  rotate-0 scale-100 transition-all dark:-rotate-90 dark:scale-0"
 								onClick={() => setTheme("dark")}
 							/>
 							<MoonIcon
-								className="absolute h-[1.2rem] w-[1.2rem] rotate-90 scale-0 transition-all dark:rotate-0 dark:scale-100"
+								className="absolute h-[1.2rem] w-[1.2rem]  rotate-90 scale-0 transition-all dark:rotate-0 dark:scale-100"
 								onClick={() => setTheme("light")}
 							/>
-							{/* <span className="sr-only">Toggle theme</span> */}
 						</Button>
 						{Session ? (
 							<Link href={"/user/" + Session?.user?.id} className="flex gap-3">
@@ -84,23 +91,40 @@ function Header() {
 							</>
 						)}
 
-						<button className="block rounded bg-gray-100 p-2.5 text-gray-600 transition hover:text-gray-600/75 md:hidden">
-							<span className="sr-only">Toggle menu</span>
-							<svg
-								xmlns="http://www.w3.org/2000/svg"
-								className="h-5 w-5"
-								fill="none"
-								viewBox="0 0 24 24"
-								stroke="currentColor"
-								strokeWidth="2"
-							>
-								<path
-									strokeLinecap="round"
-									strokeLinejoin="round"
-									d="M4 6h16M4 12h16M4 18h16"
-								/>
-							</svg>
-						</button>
+						<Popover>
+							<PopoverTrigger>
+								<div className="block rounded  p-2.5 border border-purple-700 transition  md:hidden">
+									<span className="sr-only">Toggle menu</span>
+									<svg
+										xmlns="http://www.w3.org/2000/svg"
+										className="h-5 w-5"
+										fill="none"
+										viewBox="0 0 24 24"
+										stroke="currentColor"
+										strokeWidth="2"
+									>
+										<path
+											strokeLinecap="round"
+											strokeLinejoin="round"
+											d="M4 6h16M4 12h16M4 18h16"
+										/>
+									</svg>
+								</div>
+							</PopoverTrigger>
+							<PopoverContent className="w-auto">
+								<ul className="flex flex-col items-end gap-3">
+									<li>
+										<Link href={"/auth/register"}>Register</Link>
+									</li>
+									<li>
+										<Link href={"/blog"}>Blog</Link>
+									</li>
+									<li>
+										<Link href={"/about"}>About me</Link>
+									</li>
+								</ul>
+							</PopoverContent>
+						</Popover>
 					</div>
 				</div>
 			</div>

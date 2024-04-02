@@ -7,7 +7,7 @@ type Props = {
   setRatingValue: Dispatch<SetStateAction<number | null>>;
   ratingText: string;
   setRatingText: Dispatch<SetStateAction<string>>;
-  reviewSubmitHandler: () => Promise<string | undefined>;
+  reviewSubmitHandler: () => Promise<string |  undefined>;
   isSubmittingReview: boolean;
   toggleRatingModal: () => void;
 };
@@ -33,12 +33,12 @@ const RatingModal: FC<Props> = props => {
           : 'opacity-0 pointer-events-none'
       }`}
     >
-      <div className='bg-white w-96 p-4 rounded-lg shadow-lg'>
-        <h2 className='text-xl dark:text-gray-800 font-semibold mb-2'>
+      <div className=' w-96 p-4 rounded-lg shadow-lg dark:bg-purple-950 border bg-white border-purple-700'>
+        <h2 className='text-xl  font-semibold mb-2'>
           Rate Your Experience
         </h2>
         <div className='mb-4'>
-          <label className='block text-sm font-medium text-gray-700'>
+          <label className='block text-sm font-medium '>
             Rating
           </label>
           <div className='flex items-center'>
@@ -57,7 +57,7 @@ const RatingModal: FC<Props> = props => {
         </div>
 
         <div className='mb-4'>
-          <label className='block text-sm font-medium text-gray-700'>
+          <label className='block text-sm font-medium '>
             Review Text
           </label>
 
@@ -72,7 +72,7 @@ const RatingModal: FC<Props> = props => {
         <div className='flex justify-end'>
           <button
             onClick={reviewSubmitHandler}
-            className='px-4 py-2 bg-primary text-white rounded-md'
+            className='px-4 py-2 border border-purple-700 hover:bg-purple-600 rounded-md'
             disabled={isSubmittingReview}
           >
             {isSubmittingReview ? 'Submitting' : 'Submit'}

@@ -10,7 +10,14 @@ import { useToast } from "@/components/ui/use-toast";
 import { useSession } from "next-auth/react";
 import { useRouter } from "next/navigation";
 import RoomReview from "@/components/RoomReview";
-
+import {
+	Breadcrumb,
+	BreadcrumbItem,
+	BreadcrumbLink,
+	BreadcrumbList,
+	BreadcrumbPage,
+	BreadcrumbSeparator,
+} from "@/components/ui/breadcrumb";
 function page(props: { params: { slug: string } }) {
 	const { toast } = useToast();
 	const [checkinDate, setCheckinDate] = useState<Date | null>(null);
@@ -110,6 +117,21 @@ function page(props: { params: { slug: string } }) {
 	};
 	return (
 		<div className="p-4 md:p-8 flex flex-col gap-5">
+			<Breadcrumb>
+				<BreadcrumbList>
+					<BreadcrumbItem>
+						<BreadcrumbLink href="/">Home</BreadcrumbLink>
+					</BreadcrumbItem>
+					<BreadcrumbSeparator />
+					<BreadcrumbItem>
+						<BreadcrumbLink href="/room">Hotels</BreadcrumbLink>
+					</BreadcrumbItem>
+					<BreadcrumbSeparator />
+					<BreadcrumbItem>
+						<BreadcrumbPage>{room.name}</BreadcrumbPage>
+					</BreadcrumbItem>
+				</BreadcrumbList>
+			</Breadcrumb>
 			<Image
 				alt="img"
 				width={300}

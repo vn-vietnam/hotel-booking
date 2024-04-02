@@ -1,9 +1,8 @@
-import React from 'react'
+import React from "react";
+import LoadingSpinner from "../loading";
 
 function About() {
-  return (
-	<div className='h-screen'>About</div>
-  )
+	return <LoadingSpinner />;
 }
 
-export default About
+export default About;

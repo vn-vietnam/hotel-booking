@@ -14,7 +14,10 @@ import Table from "@/components/Table";
 import Chart from "@/components/Chart";
 import RatingModal from "@/components/RatingModal";
 import BackDrop from "@/components/BackDrop";
+import { useToast } from "@/components/ui/use-toast";
 function UserPage(props: { params: { id: string } }) {
+	const { toast } = useToast();
+
 	const [roomId, setRoomId] = useState<string | null>(null);
 	const [isRatingVisible, setIsRatingVisible] = useState(false);
 	const [isSubmittingReview, setIsSubmittingReview] = useState(false);
@@ -23,11 +26,19 @@ function UserPage(props: { params: { id: string } }) {
 	const toggleRatingModal = () => setIsRatingVisible((prevState) => !prevState);
 	const reviewSubmitHandler = async () => {
 		if (!ratingText.trim().length || !ratingValue) {
+			toast({
+				title: "error",
+				description: "Please provide a rating text and a rating",
+			});
 			return "Please provide a rating text and a rating";
 			// console.log("error")
 		}
 
 		if (!roomId) {
+			toast({
+				title: "error",
+				description: "Review Failed",
+			});
 			return "error";
 			// console.log("error")
 		}
@@ -39,10 +50,18 @@ function UserPage(props: { params: { id: string } }) {
 				ratingValue,
 				roomId,
 			});
-			console.log(data);
+			// console.log(data);
 			//   toast.success('Review Submitted');
+			toast({
+				title: "success",
+				description: "Review Submitted",
+			});
 		} catch (error) {
 			console.log(error);
+			toast({
+				title: "error",
+				description: "Review Failed",
+			});
 			//   toast.error('Review Failed');
 		} finally {
 			setRatingText("");
@@ -75,7 +94,7 @@ function UserPage(props: { params: { id: string } }) {
 	if (!userData) throw new Error("Cannot fetch data");
 
 	return (
-		<div className="mx-auto px-4 md:px-8 py-10 h-screen">
+		<div className="mx-auto px-4 md:px-8 py-10 ">
 			<div className="grid md:grid-cols-12 gap-10">
 				<div className="hidden md:block md:col-span-4 lg:col-span-3 shadow-lg h-fit sticky top-10 border rounded-lg px-6 py-4">
 					<div className="md:w-[143px] w-28 h-28 md:h-[143px] mx-auto mb-5 rounded-full overflow-hidden">

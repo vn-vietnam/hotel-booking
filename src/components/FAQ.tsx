@@ -3,7 +3,7 @@ import React from "react";
 function FAQ() {
 	return (
 		<div>
-			<div className="space-y-4 p-4 sm:p-8">
+			<div className="space-y-4 p-4 sm:p-8 w-full md:w-[50%] mx-auto">
 				<h2 className="text-3xl text-center p-4 tracking-tight font-bold sm:text-4xl text-purple-500">
 					Frequently Asked Questions (FAQ)
 				</h2>
@@ -120,7 +120,7 @@ function FAQ() {
 				</details>
 			</div>
 			<section className="">
-				<div className="p-8 md:p-12 lg:px-16 lg:py-24">
+				<div className="p-8 md:p-12 lg:px-16 lg:py-24 ">
 					<div className="mx-auto max-w-lg text-center">
 						<h2 className="text-3xl text-center p-4 tracking-tight font-bold sm:text-4xl text-purple-500">
 							Latest News

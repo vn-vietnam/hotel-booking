@@ -24,7 +24,7 @@ const Search: FC<Props> = ({
 	};
 
 	return (
-		<div className="my-10 mx-4 md:mx-8 flex gap-4 flex-wrap justify-between items-center">
+		<div className="mb-10 mx-4 md:mx-8 flex gap-4 flex-wrap justify-between items-center">
 			<select
 				value={roomTypeFilter}
 				onChange={handleRoomTypeChange}
