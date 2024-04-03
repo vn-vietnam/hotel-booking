@@ -20,6 +20,7 @@ import {
 } from "@/components/ui/breadcrumb";
 
 import dynamic from "next/dynamic";
+import { Bed } from "lucide-react";
 
 // import Map from "@/components/Map";
 function page(props: { params: { slug: string } }) {
@@ -125,6 +126,7 @@ function page(props: { params: { slug: string } }) {
 			});
 		}
 	};
+	console.log(room);
 	return (
 		<div className="p-4 md:p-8 flex flex-col gap-5">
 			<Breadcrumb>
@@ -144,18 +146,42 @@ function page(props: { params: { slug: string } }) {
 			</Breadcrumb>
 			<Image
 				alt="img"
-				width={300}
-				height={300}
+				width={1000}
+				height={1000}
 				src={room.coverImage.url}
 				className="w-full h-[300px] object-cover"
 			/>
+			<div className="flex w-full">
+				{room.images.map((img, index) => (
+					<div className="flex-1" key={index}>
+						<Image
+							alt={img._key}
+							src={img.url}
+							width={400}
+							height={400}
+							className="w-[100%] h-[200px] object-cover"
+						/>
+					</div>
+				))}
+			</div>
 			<div className="flex flex-col gap-4">
 				<div className="text-xl font-semibold">{room.name}</div>
 				<div>${room.price}</div>
+				<div className="flex gap-2">
+					<Bed />
+					<div>{room.numberOfBeds}</div>
+				</div>
+				<div className="flex gap-2">
+					{room?.offeredAmenities?.map((icon) => (
+						<div key={icon._key}>
+							<div>{icon.amenity}</div>
+						</div>
+					))}
+				</div>
 				<div>{room.description}</div>
 			</div>
 			<div className="w-full h-[200px] sm:h-[500px]">
-				<MapWrapper dimention={room.dimension}/>
+				<MapWrapper dimention={room.dimension} roomName={room.name} />
 			</div>
 			<BookRoomCta
 				discount={room.discount}

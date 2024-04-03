@@ -27,8 +27,8 @@ const FeaturedRoom: FC<Props> = (props) => {
 									alt=""
 									src={hotel?.coverImage?.url}
 									className="h-56 w-full lg:w-[400px] object-cover"
-									width={100}
-									height={100}
+									width={1000}
+									height={1000}
 								/>
 
 								<div className=" p-4 sm:p-6">

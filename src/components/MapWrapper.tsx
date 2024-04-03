@@ -8,8 +8,8 @@ const ICON = icon({
 	iconUrl: "/hotel.png",
 	iconSize: [32, 32],
 });
-function MapWrapper(props: { dimention: string }) {
-	const { dimention } = props;
+function MapWrapper(props: { dimention: string, roomName: string }) {
+	const { dimention,roomName } = props;
 	const dimentionX = Number(dimention.split(',')[0])
 	const dimentionY = Number(dimention.split(',')[1])
 	// console.log(dimention.split(','))
@@ -25,8 +25,8 @@ function MapWrapper(props: { dimention: string }) {
 				attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
 				url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
 			/>
-			<Marker position={position} icon={ICON}>
-				<Popup>Home</Popup>
+			<Marker  position={position} icon={ICON}>
+				<Popup  >{roomName}</Popup>
 			</Marker>
 		</MapContainer>
 	);

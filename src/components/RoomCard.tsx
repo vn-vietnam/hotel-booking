@@ -19,8 +19,8 @@ const RoomCard: FC<Props> = (props) => {
 				<Image
 					src={coverImage.url}
 					alt={name}
-					width={250}
-					height={250}
+					width={1000}
+					height={1000}
 					className="w-full h-[250px] object-cover rounded-t-xl"
 				/>
 			</div>
