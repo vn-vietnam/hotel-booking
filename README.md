@@ -16,13 +16,13 @@
 - [Introduction](#Introduction) 
 - [Features](#Features) 
 - [Technologies](#Technologies) 
-- [Running with Docker](#RunningwithDocker) 
+- [Running with Docker](#Running-with-Docker) 
 - [Installing](#Installing) 
 - [Testing](#Testing) 
 - [Developing](#Developing) 
 - [Prerequisites](#Prerequisites) 
 - [Emphasis](#Emphasis) 
-- [Setting up Dev](#SettingupDev) 
+- [Setting up Dev](#Setting-up-Dev) 
 
 ## Introduction 
 
@@ -76,11 +76,11 @@ http://localhost:3000/studio
 
 Admin page with - /studio
 
-### Prerequisites
+## Prerequisites
 
 Please check file .env.sample
 
-### Setting up Dev
+## Setting up Dev
 
 Here's a brief intro about what a developer must do in order to start developing
 the project further:
