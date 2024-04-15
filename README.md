@@ -1,36 +1,44 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+<img src="./public/logoipsum.svg" alt="Logo" align="right">
 
-## Getting Started
+# Hotel Booking &middot; [![Build Status](https://img.shields.io/badge/build-passing-brightgreen)](https://hotel-booking-phi-nine.vercel.app/) [![npm](https://img.shields.io/npm/v/npm.svg?style=flat-square)](https://www.npmjs.com/package/npm) [![NTK](https://img.shields.io/badge/NTK-welcome-brightgreen.svg?style=flat-square)](https://github.com/vn-vietnam)
 
-First, run the development server:
+> Project hotel booking
 
-```bash
+NextJs - TypeScript - Sanity - Tailwind
+
+## Installing / Getting started
+
+A quick introduction of the minimal setup you need to get a hello world up &
+running.
+
+```shell
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## Developing
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+```shell
+http://localhost:3000
+http://localhost:3000/studio
+```
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+Admin page with - /studio
 
-## Learn More
+### Built With
 
-To learn more about Next.js, take a look at the following resources:
+NextJs + TypeScript
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+### Prerequisites
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+Please check file .env.sample
 
-## Deploy on Vercel
+### Setting up Dev
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+Here's a brief intro about what a developer must do in order to start developing
+the project further:
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+```shell
+git clone https://github.com/vn-vietnam/hotel-booking.git
+cd hotel-booking/
+npm install
+```

@@ -90,7 +90,7 @@ function UserPage(props: { params: { id: string } }) {
 
 	if (isLoading || isLoadingUserBooking) return <LoadingSpinner />;
 	if (!userData) {
-		console.log("not user");
+		// console.log("not user");
 		router.replace('/')
 	}
 	return (
