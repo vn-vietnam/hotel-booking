@@ -6,6 +6,12 @@
 
 NextJs - TypeScript - Sanity - Tailwind
 
+## Running with Docker
+
+```shell
+docker compose up
+```
+
 ## Installing / Getting started
 
 A quick introduction of the minimal setup you need to get a hello world up &
@@ -42,3 +48,4 @@ git clone https://github.com/vn-vietnam/hotel-booking.git
 cd hotel-booking/
 npm install
 ```
+

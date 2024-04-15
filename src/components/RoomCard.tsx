@@ -14,14 +14,15 @@ const RoomCard: FC<Props> = (props) => {
 	} = props;
 
 	return (
-		<div className=" my-10 mx-4 md:mx-8 rounded-xl md:w-72 w-full  border border-purple-700 flex flex-col justify-between">
+		<div className=" my-10 mx-4 md:mx-8 rounded-xl md:w-96 w-full  border border-purple-700 flex flex-col justify-between">
 			<div className=" ">
 				<Image
 					src={coverImage.url}
 					alt={name}
+					className="h-56 w-full lg:w-[400px] object-cover"
 					width={1000}
 					height={1000}
-					className=" h-[150px] object-cover rounded-t-xl"
+					// className=" h-[150px] object-cover rounded-t-xl"
 				/>
 			</div>
 
@@ -30,7 +31,7 @@ const RoomCard: FC<Props> = (props) => {
 					<div className="text-md">$ {price}</div>
 					<div className="font-bold text-xl text-purple-500">{name}</div>
 					<p className="py-4 text-md font-mono">{type} Room</p>
-					<div className="my-2 line-clamp-3 md:w-[250px] text-sm/relaxed opacity-75">
+					<div className="my-2 line-clamp-3 md:w-full text-sm/relaxed opacity-75">
 						{description}
 					</div>
 				</div>
