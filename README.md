@@ -20,7 +20,12 @@ running.
 ```shell
 npm run dev
 ```
+## Testing
 
+```shell
+User: test@gmail.com  
+Pass: 123456
+```
 ## Developing
 
 ```shell
