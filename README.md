@@ -20,12 +20,14 @@ running.
 ```shell
 npm run dev
 ```
+
 ## Testing
 
 ```shell
 User: test@gmail.com  
 Pass: 123456
 ```
+
 ## Developing
 
 ```shell
@@ -53,4 +55,3 @@ git clone https://github.com/vn-vietnam/hotel-booking.git
 cd hotel-booking/
 npm install
 ```
-
