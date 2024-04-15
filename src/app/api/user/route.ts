@@ -1,4 +1,9 @@
-import { checkReviewExists, createReview, getUserData, updateReview } from "@/lib/apis";
+import {
+	checkReviewExists,
+	createReview,
+	getUserData,
+	updateReview,
+} from "@/lib/apis";
 import { authOptions } from "@/lib/auth";
 import { getServerSession } from "next-auth";
 import { NextResponse } from "next/server";
@@ -19,42 +24,48 @@ export async function GET() {
 }
 export async function POST(req: Request, res: Response) {
 	const session = await getServerSession(authOptions);
-  
+
 	if (!session) {
-	  return new NextResponse('Authentication Required', { status: 500 });
+		return new NextResponse("Authentication Required", { status: 500 });
 	}
-  
+
 	const { roomId, reviewText, ratingValue } = await req.json();
-  
+
 	if (!roomId || !reviewText || !ratingValue) {
-	  return new NextResponse('All fields are required', { status: 400 });
+		return new NextResponse("All fields are required", { status: 400 });
 	}
-  
+
 	const userId = session.user.id;
-  
+
 	try {
-	  const alreadyExists = await checkReviewExists(userId, roomId);
-  
-	  let data;
-  
-	  if (alreadyExists) {
-		data = await updateReview({
-		  reviewId: alreadyExists._id,
-		  reviewText,
-		  userRating: ratingValue,
-		});
-	  } else {
-		data = await createReview({
-		  hotelRoomId: roomId,
-		  reviewText,
-		  userId,
-		  userRating: ratingValue,
-		});
-	  }
-  
-	  return NextResponse.json(data, { status: 200, statusText: 'Successful' });
+		const alreadyExists = await checkReviewExists(userId, roomId);
+
+		let data;
+
+		if (alreadyExists) {
+			return NextResponse.json(
+				{
+					data: "Already created review",
+				},
+				{ status: 400, statusText: "Already created review " }
+			);
+			// data = await updateReview({
+			//   reviewId: alreadyExists._id,
+			//   reviewText,
+			//   userRating: ratingValue,
+			// });
+		} else {
+			data = await createReview({
+				hotelRoomId: roomId,
+				reviewText,
+				userId,
+				userRating: ratingValue,
+			});
+		}
+
+		return NextResponse.json(data, { status: 200, statusText: "Successful" });
 	} catch (error: any) {
-	  console.log('Error Updating', error);
-	  return new NextResponse('Unable to create review', { status: 400 });
+		console.log("Error Updating", error);
+		return new NextResponse("Unable to create review", { status: 400 });
 	}
-  }
+}

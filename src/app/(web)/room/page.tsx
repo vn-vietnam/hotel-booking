@@ -8,7 +8,6 @@ import React, { useEffect, useState } from "react";
 import useSWR from "swr";
 import { Frown } from "lucide-react";
 import LoadingSpinner from "../loading";
-import RoomReview from "@/components/RoomReview";
 import {
 	Breadcrumb,
 	BreadcrumbItem,
@@ -34,7 +33,6 @@ function page() {
 	}
 
 	const { data, error, isLoading } = useSWR("get/hotelRooms", fetchData);
-	// console.log(data);
 	if (error) throw new Error("Cannot fetch data");
 	if (typeof data === "undefined" && !isLoading)
 		throw new Error("Cannot fetch data");

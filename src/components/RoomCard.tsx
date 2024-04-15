@@ -14,31 +14,33 @@ const RoomCard: FC<Props> = (props) => {
 	} = props;
 
 	return (
-		<div className=" my-10 mx-4 md:mx-8 rounded-xl md:w-72 w-full  border border-purple-700">
+		<div className=" my-10 mx-4 md:mx-8 rounded-xl md:w-72 w-full  border border-purple-700 flex flex-col justify-between">
 			<div className=" ">
 				<Image
 					src={coverImage.url}
 					alt={name}
 					width={1000}
 					height={1000}
-					className="w-full h-[250px] object-cover rounded-t-xl"
+					className=" h-[150px] object-cover rounded-t-xl"
 				/>
 			</div>
 
-			<div className="p-4 ">
+			<div className="p-4">
 				<div className="flex justify-between flex-col text-md gap-3">
-					<div>$ {price}</div>
-					<div className="">{name}</div>
+					<div className="text-md">$ {price}</div>
+					<div className="font-bold text-xl text-purple-500">{name}</div>
+					<p className="py-4 text-md font-mono">{type} Room</p>
+					<div className="my-2 line-clamp-3 md:w-[250px] text-sm/relaxed opacity-75">
+						{description}
+					</div>
 				</div>
-
-				<p className="py-4 text-md font-mono">{type} Room</p>
-				<Link
-					href={`/room/${slug.current}`}
-					className="border border-2 inline-block text-center w-full py-4 rounded-xl  text-xl font-bold hover:-translate-y-2 hover:shadow-lg transition-all duration-500"
-				>
-					{isBooked ? "BOOKED" : "BOOK NOW"}
-				</Link>
 			</div>
+			<Link
+				href={`/room/${slug.current}`}
+				className="border-2 inline-block text-center py-2 m-4 rounded-xl border-purple-700 hover:shadow-purple-700 text-md font-bold hover:-translate-y-2 hover:shadow-lg transition-all duration-500 "
+			>
+				{isBooked ? "BOOKED" : "BOOK NOW"}
+			</Link>
 		</div>
 	);
 };

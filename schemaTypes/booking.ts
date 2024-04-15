@@ -1,5 +1,11 @@
 import { defineField } from 'sanity';
 
+const bookingTypes = [
+  { title: 'Checking', value: 'checking' },
+  { title: 'Booked', value: 'booked' },
+  { title: 'Cancel', value: 'cancel' },
+];
+
 const booking = {
   name: 'booking',
   title: 'Booking',
@@ -65,6 +71,16 @@ const booking = {
       type: 'number',
       validation: Rule => Rule.required().min(0),
     }),
+    defineField({
+			name: "checkStatus",
+			title: "Checking Status",
+			type: "string",
+      options: {
+        list: bookingTypes,
+      },
+      validation: Rule => Rule.required(),
+			initialValue: "checking",
+		}),
   ],
 };
 

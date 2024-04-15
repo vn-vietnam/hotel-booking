@@ -13,7 +13,6 @@ import {
 } from "@/components/ui/popover";
 function Header() {
 	const { data: Session } = useSession();
-	// console.log(Session);
 	const { setTheme } = useTheme();
 	return (
 		<header className="">
@@ -69,7 +68,12 @@ function Header() {
 									className="rounded-full h-[35px] w-[35px]"
 								/>
 
-								<Button onClick={() => signOut()}>SignOut</Button>
+								<Button
+									className="cursor-pointer block rounded-md bg-purple-700 px-5 py-2.5 text-sm font-medium text-white transition hover:bg-purple-800"
+									onClick={() => signOut()}
+								>
+									SignOut
+								</Button>
 							</Link>
 						) : (
 							<>
@@ -113,9 +117,6 @@ function Header() {
 							</PopoverTrigger>
 							<PopoverContent className="w-auto">
 								<ul className="flex flex-col items-end gap-3">
-									<li>
-										<Link href={"/auth/register"}>Register</Link>
-									</li>
 									<li>
 										<Link href={"/blog"}>Blog</Link>
 									</li>

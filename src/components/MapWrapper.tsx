@@ -5,7 +5,7 @@ import "leaflet/dist/leaflet.css";
 import "leaflet/dist/images/marker-icon-2x.png";
 
 const ICON = icon({
-	iconUrl: "/hotel.png",
+	iconUrl: "/pin.png",
 	iconSize: [32, 32],
 });
 function MapWrapper(props: { dimention: string, roomName: string }) {
@@ -26,7 +26,7 @@ function MapWrapper(props: { dimention: string, roomName: string }) {
 				url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
 			/>
 			<Marker  position={position} icon={ICON}>
-				<Popup  >{roomName}</Popup>
+				<Popup  className="font-bold text-purple-700">{roomName}</Popup>
 			</Marker>
 		</MapContainer>
 	);

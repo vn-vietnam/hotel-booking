@@ -12,7 +12,7 @@ export const metadata: Metadata = {
 	title: "Hotel Booking",
 	description: "Secure Your Stay: Book Your Hotel Room Now!",
 	icons: {
-		icon: "/logoipsum.svg", // /public path
+		icon: "/logoipsum.svg", 
 	},
 };
 

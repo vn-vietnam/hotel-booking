@@ -17,13 +17,13 @@ function Banner() {
 
 					<div className="mt-8 flex flex-wrap justify-center gap-4">
 						<Link
-						className="inline-block rounded  px-12 py-3 text-sm font-medium border-purple-700 border transition hover:shadow-xl hover:shadow-purple-700/25 hover:border-x-purple-700 focus:outline-none focus:ring focus:ring-purple-400"
+						className="inline-block   px-12 py-3 text-sm   border   hover:border-x-purple-700 focus:outline-none focus:ring focus:ring-purple-400 rounded-xl border-purple-700 hover:shadow-purple-700 text-md font-bold hover:-translate-y-2 hover:shadow-lg transition-all duration-500"
 							href="/room"
 						>
 							Get Started
 						</Link>
 						<Link
-						className="inline-block rounded  px-12 py-3 text-sm font-medium border-purple-700 border transition hover:shadow-xl hover:shadow-purple-700/25 hover:border-x-purple-700 focus:outline-none focus:ring focus:ring-purple-400"
+						className="inline-block   px-12 py-3 text-sm  border   hover:border-x-purple-700 focus:outline-none focus:ring focus:ring-purple-400 rounded-xl border-purple-700 hover:shadow-purple-700 text-md font-bold hover:-translate-y-2 hover:shadow-lg transition-all duration-500"
 							href="/room"
 						>
 							Learn More

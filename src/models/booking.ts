@@ -1,11 +1,12 @@
 export type Booking = {
 	_id: string;
 	hotelRoom: {
-	  _id: string;
-	  name: string;
-	  slug: { current: string };
-	  price: number;
+		_id: string;
+		name: string;
+		slug: { current: string };
+		price: number;
 	};
+	checkStatus: string | undefined;
 	checkinDate: string;
 	checkoutDate: string;
 	numberOfDays: number;
@@ -13,4 +14,4 @@ export type Booking = {
 	children: number;
 	totalPrice: number;
 	discount: number;
-  };
+};

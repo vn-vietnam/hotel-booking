@@ -32,10 +32,10 @@ const FeaturedRoom: FC<Props> = (props) => {
 								/>
 
 								<div className=" p-4 sm:p-6">
-									<div className="block text-xs ">$ {hotel?.price}</div>
+									<div className="block font-bold text-lg">$ {hotel?.price}</div>
 
 									<div>
-										<h3 className="mt-2 text-md ">{hotel?.name}</h3>
+										<h3 className="mt-2 font-bold text-xl text-purple-500">{hotel?.name}</h3>
 									</div>
 
 									<div className="mt-2 line-clamp-3 md:w-[350px] text-sm/relaxed opacity-75">

@@ -15,9 +15,10 @@ import Chart from "@/components/Chart";
 import RatingModal from "@/components/RatingModal";
 import BackDrop from "@/components/BackDrop";
 import { useToast } from "@/components/ui/use-toast";
+import { useRouter } from "next/navigation";
 function UserPage(props: { params: { id: string } }) {
 	const { toast } = useToast();
-
+	const router = useRouter();
 	const [roomId, setRoomId] = useState<string | null>(null);
 	const [isRatingVisible, setIsRatingVisible] = useState(false);
 	const [isSubmittingReview, setIsSubmittingReview] = useState(false);
@@ -40,7 +41,6 @@ function UserPage(props: { params: { id: string } }) {
 				description: "Review Failed",
 			});
 			return "error";
-			// console.log("error")
 		}
 		setIsSubmittingReview(true);
 
@@ -50,19 +50,16 @@ function UserPage(props: { params: { id: string } }) {
 				ratingValue,
 				roomId,
 			});
-			// console.log(data);
-			//   toast.success('Review Submitted');
 			toast({
 				title: "success",
 				description: "Review Submitted",
 			});
-		} catch (error) {
-			console.log(error);
+		} catch (error: any) {
+			// console.log(error.response.data.data);
 			toast({
 				title: "error",
-				description: "Review Failed",
+				description: error.response.data.data,
 			});
-			//   toast.error('Review Failed');
 		} finally {
 			setRatingText("");
 			setRatingValue(null);
@@ -89,10 +86,13 @@ function UserPage(props: { params: { id: string } }) {
 		"/api/userbooking",
 		fetchUserBooking
 	);
+	// console.log(userBookings)
 
 	if (isLoading || isLoadingUserBooking) return <LoadingSpinner />;
-	if (!userData) throw new Error("Cannot fetch data");
-
+	if (!userData) {
+		console.log("not user");
+		router.replace('/')
+	}
 	return (
 		<div className="mx-auto px-4 md:px-8 py-10 ">
 			<div className="grid md:grid-cols-12 gap-10">
@@ -100,7 +100,7 @@ function UserPage(props: { params: { id: string } }) {
 					<div className="md:w-[143px] w-28 h-28 md:h-[143px] mx-auto mb-5 rounded-full overflow-hidden">
 						<Image
 							src={userData?.image || "/user.webp"}
-							alt={userData?.name}
+							alt={userData?.name as string}
 							width={143}
 							height={143}
 							className="img scale-animation rounded-full"

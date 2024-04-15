@@ -21,8 +21,6 @@ import {
 
 import dynamic from "next/dynamic";
 import { Bed } from "lucide-react";
-
-// import Map from "@/components/Map";
 function page(props: { params: { slug: string } }) {
 	const MapWrapper = dynamic(
 		() => import("../../../../components/MapWrapper"),
@@ -42,8 +40,9 @@ function page(props: { params: { slug: string } }) {
 	const router = useRouter();
 	const fetchRoom = async () => getRoom(slug);
 	const { data: room, error, isLoading } = useSWR("/api/room", fetchRoom);
+	// console.log(room)
 	const session = useSession();
-	// console.log(session);
+	// 
 	if (error) throw new Error("Cannot fetch data");
 	if (typeof room === "undefined" && !isLoading)
 		throw new Error("Cannot fetch data");
@@ -126,7 +125,7 @@ function page(props: { params: { slug: string } }) {
 			});
 		}
 	};
-	console.log(room);
+	
 	return (
 		<div className="p-4 md:p-8 flex flex-col gap-5">
 			<Breadcrumb>
@@ -166,19 +165,19 @@ function page(props: { params: { slug: string } }) {
 			</div>
 			<div className="flex flex-col gap-4">
 				<div className="text-xl font-semibold">{room.name}</div>
-				<div>${room.price}</div>
+				<div>$ {room.price}</div>
 				<div className="flex gap-2">
 					<Bed />
-					<div>{room.numberOfBeds}</div>
+					<div> Bed: {room.numberOfBeds} </div>
 				</div>
 				<div className="flex gap-2">
 					{room?.offeredAmenities?.map((icon) => (
 						<div key={icon._key}>
-							<div>{icon.amenity}</div>
+							<div className="p-2 border border-1 border-purple-700 hover:shadow-purple-700 rounded-lg text-sm">{icon.amenity}</div>
 						</div>
 					))}
 				</div>
-				<div>{room.description}</div>
+				<div className="whitespace-pre-line">{room.description}</div>
 			</div>
 			<div className="w-full h-[200px] sm:h-[500px]">
 				<MapWrapper dimention={room.dimension} roomName={room.name} />
@@ -200,7 +199,7 @@ function page(props: { params: { slug: string } }) {
 				handleBookNowClick={handleBookNowClick}
 			/>
 			{/* review */}
-			<div className="shadow dark:shadow-white rounded-lg p-4">
+			<div className="shadow dark:shadow-white rounded-lg p-4 border-2 border-purple-700">
 				<div className="items-center mb-4">
 					<p className="md:text-lg font-semibold">Customer Reviews</p>
 				</div>

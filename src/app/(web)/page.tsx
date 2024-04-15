@@ -16,7 +16,6 @@ async function page() {
 			<Testimonial />
 			<FeaturedRoom featuredRoom={featuredRoom} />
 			<FAQ />
-			
 		</div>
 	);
 }

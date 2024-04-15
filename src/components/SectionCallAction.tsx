@@ -1,4 +1,9 @@
-import { BookmarkFilledIcon, GroupIcon, HomeIcon, UpdateIcon } from "@radix-ui/react-icons";
+import {
+	BookmarkFilledIcon,
+	GroupIcon,
+	HomeIcon,
+	UpdateIcon,
+} from "@radix-ui/react-icons";
 import Link from "next/link";
 import React from "react";
 import { FaBuyNLarge } from "react-icons/fa";
@@ -24,7 +29,7 @@ function SectionCallAction() {
 						className="block rounded-xl border border-purple-800 p-8 shadow-xl transition hover:border-x-purple-700 hover:shadow-purple-700/25"
 						href="#"
 					>
-						<BookmarkFilledIcon color="purple"/>
+						<BookmarkFilledIcon color="purple" className="h-[50px] w-[50px]"  />
 
 						<h2 className="mt-5 text-xl font-bold ">Standard Booking</h2>
 
@@ -37,11 +42,9 @@ function SectionCallAction() {
 						className="block rounded-xl border border-purple-800 p-8 shadow-xl transition hover:border-x-purple-700 hover:shadow-purple-700/25"
 						href="#"
 					>
-						<HomeIcon color="purple"/>
+						<HomeIcon color="purple" className="h-[50px] w-[50px]"/>
 
-						<h2 className="mt-5 text-xl font-bold ">
-							Flexible Booking
-						</h2>
+						<h2 className="mt-5 text-xl font-bold ">Flexible Booking</h2>
 
 						<p className="mt-5 text-sm ">
 							Enjoy peace of mind with the ability to modify or cancel your
@@ -53,11 +56,9 @@ function SectionCallAction() {
 						className="block rounded-xl border border-purple-800 p-8 shadow-xl transition hover:border-x-purple-700 hover:shadow-purple-700/25"
 						href="#"
 					>
-						<FaBuyNLarge color="purple"/>
+						<FaBuyNLarge color="purple" className="h-[50px] w-[50px]"/>
 
-						<h2 className="mt-5 text-xl font-bold ">
-							Advance Purchase
-						</h2>
+						<h2 className="mt-5 text-xl font-bold ">Advance Purchase</h2>
 
 						<p className="mt-5 text-sm ">
 							Plan ahead and save! Book in advance to access special discounts
@@ -69,11 +70,9 @@ function SectionCallAction() {
 						className="block rounded-xl border border-purple-800 p-8 shadow-xl transition hover:border-x-purple-700 hover:shadow-purple-700/25"
 						href="#"
 					>
-						<GiMatchbox color="purple"/>
+						<GiMatchbox color="purple" className="h-[50px] w-[50px]"/>
 
-						<h2 className="mt-5 text-xl font-bold ">
-							Last-Minute Deals
-						</h2>
+						<h2 className="mt-5 text-xl font-bold ">Last-Minute Deals</h2>
 
 						<p className="mt-5 text-sm ">
 							Score amazing discounts on remaining rooms for spontaneous
@@ -85,11 +84,9 @@ function SectionCallAction() {
 						className="block rounded-xl border border-purple-800 p-8 shadow-xl transition hover:border-x-purple-700 hover:shadow-purple-700/25"
 						href="#"
 					>
-						<GroupIcon color="purple"/>
+						<GroupIcon color="purple" className="h-[50px] w-[50px]"/>
 
-						<h2 className="mt-5 text-xl font-bold ">
-							Group Reservations
-						</h2>
+						<h2 className="mt-5 text-xl font-bold ">Group Reservations</h2>
 
 						<p className="mt-5 text-sm ">
 							Planning a group trip? Contact us for special rates and
@@ -101,11 +98,9 @@ function SectionCallAction() {
 						className="block rounded-xl border border-purple-800 p-8 shadow-xl transition hover:border-x-purple-700 hover:shadow-purple-700/25"
 						href="#"
 					>
-						<UpdateIcon color="purple"/>
+						<UpdateIcon color="purple" className="h-[50px] w-[50px]"/>
 
-						<h2 className="mt-5 text-xl font-bold ">
-							Premium Upgrades
-						</h2>
+						<h2 className="mt-5 text-xl font-bold ">Premium Upgrades</h2>
 
 						<p className="mt-5 text-sm ">
 							levate your experience with our premium upgrade options, including
@@ -117,7 +112,7 @@ function SectionCallAction() {
 				<div className="mt-12 text-center">
 					<Link
 						href="/room"
-						className="inline-block rounded  px-12 py-3 text-sm font-medium border-purple-700 border transition hover:shadow-xl hover:shadow-purple-700/25 hover:border-x-purple-700 focus:outline-none focus:ring focus:ring-purple-400"
+						className="inline-block   px-12 py-3 text-sm  border  hover:border-x-purple-700 focus:outline-none focus:ring focus:ring-purple-400 rounded-xl border-purple-700 hover:shadow-purple-700 text-md font-bold hover:-translate-y-2 hover:shadow-lg transition-all duration-500"
 					>
 						Get Started Today
 					</Link>

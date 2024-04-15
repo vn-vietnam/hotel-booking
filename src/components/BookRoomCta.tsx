@@ -48,7 +48,7 @@ const BookRoomCta: FC<Props> = (props) => {
 		<div className="">
 			<h3>
 				<span
-					className={`${discount ? "text-gray-400" : ""} font-bold text-xl`}
+					className={`${discount ? "text-purple-700" : ""} font-bold text-xl`}
 				>
 					Price ${price}
 				</span>
@@ -63,7 +63,7 @@ const BookRoomCta: FC<Props> = (props) => {
 				)}
 			</h3>
 
-			<div className="w-full border-b-2 border-b-secondary my-2" />
+			<div className="w-full border-b-2  border-b-purple-700 my-2" />
 
 			<h4 className="my-8">{specialNote}</h4>
 
@@ -149,7 +149,7 @@ const BookRoomCta: FC<Props> = (props) => {
 			<button
 				disabled={isBooked}
 				onClick={handleBookNowClick}
-				className="border w-full md:w-[160px] h-[50px] border-purple-700 rounded-xl text-center mt-6 font-bold hover:border-purple-900 disabled:bg-gray-500 disabled:cursor-not-allowed"
+				className="border w-full md:w-[160px] h-[50px]  text-center mt-6  hover:border-purple-900 disabled:bg-gray-500 disabled:cursor-not-allowed  rounded-xl border-purple-700 hover:shadow-purple-700 text-md font-bold hover:-translate-y-2 hover:shadow-lg transition-all duration-500"
 			>
 				{isBooked ? "Booked" : "Book Now"}
 			</button>
